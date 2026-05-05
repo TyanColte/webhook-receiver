@@ -8,7 +8,9 @@
       { "source": "payload", "name": "repository.name", "envname": "REPO_NAME" },
       { "source": "payload", "name": "pusher.name", "envname": "PUSHER_NAME" },
       { "source": "payload", "name": "head_commit.message", "envname": "COMMIT_MSG" },
-      { "source": "payload", "name": "head_commit.modified", "envname": "MODIFIED_FILES" }
+      { "source": "payload", "name": "head_commit.modified", "envname": "MODIFIED_FILES" },
+      { "source": "env", "name": "NTFY_URL", "envname": "NTFY_URL" },
+      { "source": "env", "name": "NTFY_TOKEN", "envname": "NTFY_TOKEN" }
     ]
   },
   {
@@ -17,7 +19,9 @@
     "command-working-directory": "/",
     "include-command-output-in-response": true,
     "pass-environment-to-command": [
-      { "source": "payload", "name": "stack_name", "envname": "STACK_NAME" }
+      { "source": "payload", "name": "stack_name", "envname": "STACK_NAME" },
+      { "source": "env", "name": "NTFY_URL", "envname": "NTFY_URL" },
+      { "source": "env", "name": "NTFY_TOKEN", "envname": "NTFY_TOKEN" }
     ]
   },
   {
@@ -26,7 +30,9 @@
     "command-working-directory": "/",
     "include-command-output-in-response": true,
     "pass-environment-to-command": [
-      { "source": "payload", "name": "message", "envname": "UPDATE_MESSAGE" }
+      { "source": "payload", "name": "message", "envname": "UPDATE_MESSAGE" },
+      { "source": "env", "name": "NTFY_URL", "envname": "NTFY_URL" },
+      { "source": "env", "name": "NTFY_TOKEN", "envname": "NTFY_TOKEN" }
     ]
   }
 ]
