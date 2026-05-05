@@ -1,5 +1,5 @@
 FROM alpine:latest
-RUN apk add --no-cache curl tar wget
+RUN apk add --no-cache curl tar wget gcompat
 RUN wget https://github.com/adnanh/webhook/releases/download/2.8.1/webhook-linux-amd64.tar.gz -O /tmp/webhook.tar.gz \
     && tar -xzf /tmp/webhook.tar.gz -C /tmp \
     && mv /tmp/webhook-linux-amd64/webhook /usr/local/bin/webhook \
