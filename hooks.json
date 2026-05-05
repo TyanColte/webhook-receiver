@@ -1,0 +1,32 @@
+[
+  {
+    "id": "github-push",
+    "execute-command": "/scripts/github-push.sh",
+    "command-working-directory": "/",
+    "include-command-output-in-response": true,
+    "pass-environment-to-command": [
+      { "source": "payload", "name": "repository.name", "envname": "REPO_NAME" },
+      { "source": "payload", "name": "pusher.name", "envname": "PUSHER_NAME" },
+      { "source": "payload", "name": "head_commit.message", "envname": "COMMIT_MSG" },
+      { "source": "payload", "name": "head_commit.modified", "envname": "MODIFIED_FILES" }
+    ]
+  },
+  {
+    "id": "portainer-notify",
+    "execute-command": "/scripts/portainer-notify.sh",
+    "command-working-directory": "/",
+    "include-command-output-in-response": true,
+    "pass-environment-to-command": [
+      { "source": "payload", "name": "stack_name", "envname": "STACK_NAME" }
+    ]
+  },
+  {
+    "id": "watchtower-notify",
+    "execute-command": "/scripts/watchtower-notify.sh",
+    "command-working-directory": "/",
+    "include-command-output-in-response": true,
+    "pass-environment-to-command": [
+      { "source": "payload", "name": "message", "envname": "UPDATE_MESSAGE" }
+    ]
+  }
+]
