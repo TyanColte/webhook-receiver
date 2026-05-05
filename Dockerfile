@@ -5,5 +5,8 @@ RUN wget https://github.com/adnanh/webhook/releases/download/2.8.1/webhook-linux
     && mv /tmp/webhook-linux-amd64/webhook /usr/local/bin/webhook \
     && rm -rf /tmp/webhook* \
     && chmod +x /usr/local/bin/webhook
+COPY hooks.json /hooks/hooks.json
+COPY scripts/ /scripts/
+RUN chmod +x /scripts/*.sh
 EXPOSE 9000
 ENTRYPOINT ["webhook", "-hooks=/hooks/hooks.json", "-verbose", "-hotreload"]
