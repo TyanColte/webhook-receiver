@@ -13,5 +13,6 @@ if echo "${MODIFIED_FILES}" | grep -qi "caddy"; then
     -H "Title: Caddy Reloading" \
     -d "Caddyfile updated — restarting Caddy" \
     "${NTFY_URL}/caddy-updates"
-  curl -s --unix-socket /var/run/docker.sock -X POST "http://localhost/containers/caddy/restart"
+  CADDY_ID=$(curl -s --unix-socket /var/run/docker.sock "http://localhost/containers/json" | python3 -c "import sys,json; cs=json.load(sys.stdin); c=next((x for x in cs if any('caddy' in n.lower() for n in x['Names'])),None); print(c['Id'] if c else '')")
+  curl -s --unix-socket /var/run/docker.sock -X POST "http://localhost/containers/${CADDY_ID}/restart"
 fi
