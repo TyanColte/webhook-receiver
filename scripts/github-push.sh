@@ -6,6 +6,11 @@ curl -s -o /dev/null \
   -d "${PUSHER_NAME}: ${COMMIT_MSG}" \
   "${NTFY_URL}/github-updates"
 
+# If vikunja stack files were modified, trigger Portainer redeploy
+if echo "${MODIFIED_FILES}" | grep -qi "vikunja"; then
+  curl -s -o /dev/null -X POST "https://docker.tyan.omegaos.us/api/stacks/webhooks/e5e90834-1a42-4560-8591-e5690ef6fad2"
+fi
+
 # If caddy files were modified, notify then restart caddy (notify first — restart takes caddy down)
 if echo "${MODIFIED_FILES}" | grep -qi "caddy"; then
   curl -s -o /dev/null \
